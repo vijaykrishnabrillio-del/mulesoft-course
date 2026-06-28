@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3: Mule Application Structure - MuleSoft Learning Guide</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="content-header">
+            <nav class="breadcrumb">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html">Week 1</a>
+                <span class="current">Day 3</span>
+            </nav>
+            <h1>Day 3: Mule Application Structure</h1>
+        </header>
+
+        <main class="lesson-content">
+            <h1>Day 3: Mule Application Structure</h1>
+<h2>📚 Learning Objectives</h2>
+<ul>
+<li>Understand the complete anatomy of a Mule project</li>
+<li>Learn about XML configuration and namespaces</li>
+<li>Master flows, sub-flows, and their differences</li>
+<li>Understand Maven project structure (pom.xml)</li>
+<li>Explore configuration files and their purposes</li>
+</ul>
+<p><strong>Estimated Time</strong>: 2 hours  </p>
+<p><strong>Theory</strong>: 50% | <strong>Practical</strong>: 50%</p>
+<h2>📄 Understanding pom.xml (Maven Configuration)</h2>
+<h3>What is Maven?</h3>
+<p>Maven is a build automation and dependency management tool. MuleSoft uses Maven to manage:</p>
+<ul>
+<li>Project dependencies (connectors, modules)</li>
+<li>Build process</li>
+<li>Versioning</li>
+<li>Packaging</li>
+</ul>
+<h3>Sample pom.xml Structure:</h3>
+<pre><code class='language-xml'>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    
+    &lt;!-- Project Coordinates --&gt;
+    &lt;groupId&gt;com.mycompany&lt;/groupId&gt;
+    &lt;artifactId&gt;my-mule-app&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+    &lt;packaging&gt;mule-application&lt;/packaging&gt;
+    &lt;name&gt;my-mule-app&lt;/name&gt;
+    
+    &lt;!-- Mule Version --&gt;
+    &lt;properties&gt;
+        &lt;mule.version&gt;4.4.0&lt;/mule.version&gt;
+    &lt;/properties&gt;
+    
+    &lt;!-- Dependencies --&gt;
+    &lt;dependencies&gt;
+        &lt;!-- HTTP Connector --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.mule.connectors&lt;/groupId&gt;
+            &lt;artifactId&gt;mule-http-connector&lt;/artifactId&gt;
+            &lt;version&gt;1.7.3&lt;/version&gt;
+            &lt;classifier&gt;mule-plugin&lt;/classifier&gt;
+        &lt;/dependency&gt;
+        
+        &lt;!-- Sockets Connector --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.mule.connectors&lt;/groupId&gt;
+            &lt;artifactId&gt;mule-sockets-connector&lt;/artifactId&gt;
+            &lt;version&gt;1.2.3&lt;/version&gt;
+            &lt;classifier&gt;mule-plugin&lt;/classifier&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    
+    &lt;!-- Build Configuration --&gt;
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.mule.tools.maven&lt;/groupId&gt;
+                &lt;artifactId&gt;mule-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.8.0&lt;/version&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+<h3>Key Sections Explained:</h3>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>groupId</strong></td>
+<td>Organization identifier</td>
+<td><code>com.mycompany</code></td>
+</tr>
+<tr>
+<td><strong>artifactId</strong></td>
+<td>Project name</td>
+<td><code>customer-api</code></td>
+</tr>
+<tr>
+<td><strong>version</strong></td>
+<td>Project version</td>
+<td><code>1.0.0-SNAPSHOT</code></td>
+</tr>
+<tr>
+<td><strong>dependencies</strong></td>
+<td>External libraries/connectors</td>
+<td>HTTP, Database connectors</td>
+</tr>
+<tr>
+<td><strong>properties</strong></td>
+<td>Configuration variables</td>
+<td>Mule runtime version</td>
+</tr>
+</tbody>
+</table>
+<h2>🔀 Flows vs Sub-flows vs Private Flows</h2>
+
+<div class="diagram">
+    <img src="../assets/images/mule-flow.svg" alt="Mule Flow Structure" />
+    <p class="diagram-caption">Mule Flow Components</p>
+</div>
+
+<h3>Comparison Table:</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Flow</th>
+<th>Sub-flow</th>
+<th>Private Flow</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Has Source</strong></td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+<td>❌ No</td>
+</tr>
+<tr>
+<td><strong>Error Handling</strong></td>
+<td>Own error handler</td>
+<td>Inherits from caller</td>
+<td>Own error handler</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>Public</td>
+<td>Public</td>
+<td>Private</td>
+</tr>
+<tr>
+<td><strong>Use Case</strong></td>
+<td>Entry point</td>
+<td>Reusable logic</td>
+<td>Internal reuse</td>
+</tr>
+<tr>
+<td><strong>Transactions</strong></td>
+<td>Can start</td>
+<td>Shares with caller</td>
+<td>Can start</td>
+</tr>
+</tbody>
+</table>
+<h3>Example - Flow:</h3>
+<pre><code class='language-xml'>&lt;!-- Public entry point with source --&gt;
+&lt;flow name=&quot;main-flow&quot;&gt;
+    &lt;http:listener path=&quot;/api/customers&quot;/&gt;
+    &lt;logger message=&quot;Main flow started&quot;/&gt;
+    &lt;flow-ref name=&quot;process-customer-subflow&quot;/&gt;
+&lt;/flow&gt;
+</code></pre>
+<h3>Example - Sub-flow:</h3>
+<pre><code class='language-xml'>&lt;!-- Reusable logic, shares error handling --&gt;
+&lt;sub-flow name=&quot;process-customer-subflow&quot;&gt;
+    &lt;logger message=&quot;Processing customer&quot;/&gt;
+    &lt;set-variable variableName=&quot;timestamp&quot; value=&quot;#[now()]&quot;/&gt;
+    &lt;ee:transform&gt;
+        &lt;!-- DataWeave transformation --&gt;
+    &lt;/ee:transform&gt;
+&lt;/sub-flow&gt;
+</code></pre>
+<h3>Example - Private Flow:</h3>
+<pre><code class='language-xml'>&lt;!-- Private flow with own error handling --&gt;
+&lt;flow name=&quot;private-validation-flow&quot;&gt;
+    &lt;logger message=&quot;Validating data&quot;/&gt;
+    &lt;choice&gt;
+        &lt;when expression=&quot;#[payload.age &amp;gt; 18]&quot;&gt;
+            &lt;set-payload value=&quot;Valid&quot;/&gt;
+        &lt;/when&gt;
+        &lt;otherwise&gt;
+            &lt;raise-error type=&quot;VALIDATION:INVALID_AGE&quot;/&gt;
+        &lt;/otherwise&gt;
+    &lt;/choice&gt;
+    &lt;error-handler&gt;
+        &lt;on-error-propagate type=&quot;VALIDATION:INVALID_AGE&quot;&gt;
+            &lt;logger message=&quot;Age validation failed&quot;/&gt;
+        &lt;/on-error-propagate&gt;
+    &lt;/error-handler&gt;
+&lt;/flow&gt;
+</code></pre>
+
+<h3>Common Namespaces:</h3>
+
+<table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Namespace</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(none)</td>
+<td><code>mule/core</code></td>
+<td>Core components (logger, set-payload)</td>
+</tr>
+<tr>
+<td><code>ee</code></td>
+<td><code>mule/ee/core</code></td>
+<td>Enterprise Edition (Transform)</td>
+</tr>
+<tr>
+<td><code>db</code></td>
+<td><code>mule/db</code></td>
+<td>Database connector</td>
+</tr>
+<tr>
+<td><code>file</code></td>
+<td><code>mule/file</code></td>
+<td>File connector</td>
+</tr>
+</tbody>
+</table>
+<h2>🛠️ Hands-On Exercise: Explore Project Structure</h2>
+<h3>Task 1: Create and Examine Project</h3>
+<ol>
+<li>Create new Mule project: <code>project-structure-demo</code></li>
+<li>Expand all folders in Package Explorer</li>
+<li>Open <code>pom.xml</code> and identify:</li>
+</ul>
+<p>   - groupId</p>
+<p>   - artifactId</p>
+<p>   - version</p>
+<p>   - dependencies</p>
+<h3>Task 2: Add a Dependency Manually</h3>
+<ol>
+<li>Open <code>pom.xml</code></li>
+<li>Add Database connector dependency:</li>
+<pre><code class='language-xml'>&lt;dependency&gt;
+    &lt;groupId&gt;org.mule.connectors&lt;/groupId&gt;
+    &lt;artifactId&gt;mule-db-connector&lt;/artifactId&gt;
+    &lt;version&gt;1.14.0&lt;/version&gt;
+    &lt;classifier&gt;mule-plugin&lt;/classifier&gt;
+&lt;/dependency&gt;
+</code></pre>
+<li>Save file</li>
+<li>Right-click project → <strong>Mule</strong> → <strong>Update Project Dependencies</strong></li>
+<li>Check Mule Palette - Database should now appear!</li>
+</ul>
+<h3>Task 3: Create Multiple Flows</h3>
+<ol>
+<li>Open the main .xml file</li>
+<li>Switch to Configuration XML view</li>
+<li>Add this code:</li>
+<pre><code class='language-xml'>&lt;flow name=&quot;main-entry-flow&quot;&gt;
+    &lt;scheduler doc:name=&quot;Scheduler&quot;&gt;
+        &lt;scheduling-strategy&gt;
+            &lt;fixed-frequency frequency=&quot;60000&quot;/&gt;
+        &lt;/scheduling-strategy&gt;
+    &lt;/scheduler&gt;
+    &lt;logger level=&quot;INFO&quot; message=&quot;Main flow triggered&quot;/&gt;
+    &lt;flow-ref name=&quot;processing-subflow&quot;/&gt;
+&lt;/flow&gt;
+
+&lt;sub-flow name=&quot;processing-subflow&quot;&gt;
+    &lt;logger level=&quot;INFO&quot; message=&quot;Sub-flow executing&quot;/&gt;
+    &lt;set-payload value=&quot;Processed!&quot;/&gt;
+&lt;/sub-flow&gt;
+</code></pre>
+<li>Switch to Message Flow view</li>
+<li>See the visual representation</li>
+</ul>
+<h2>📝 Knowledge Check</h2>
+<ol>
+<li>What is the purpose of pom.xml?</li>
+<li>Name three key differences between flows and sub-flows</li>
+<li>What folder contains Mule configuration XML files?</li>
+<li>What file controls logging configuration?</li>
+<li>What happens when you add a dependency to pom.xml?</li>
+</ul>
+
+
+        </main>
+
+        <nav class="lesson-nav">
+            <a href='day-02.html' class='nav-btn prev'><i class='fas fa-arrow-left'></i> Previous</a>
+            <a href='day-04.html' class='nav-btn next'>Next <i class='fas fa-arrow-right'></i></a>
+        </nav>
+
+        <footer class="content-footer">
+            <p><a href="../index.html">Back to Home</a> | <a href="index.html">Week 1 Overview</a> | <a href="../resources.html">Resources</a></p>
+        </footer>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

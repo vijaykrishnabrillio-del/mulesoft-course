@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#003865">API-Led Connectivity</text>
+  
+  <!-- Experience Layer -->
+  <rect x="250" y="80" width="300" height="100" fill="#e1f5ff" stroke="#01579b" stroke-width="3" rx="10"/>
+  <text x="400" y="110" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#01579b">Experience APIs</text>
+  <text x="400" y="135" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#333">Channel-specific views</text>
+  <text x="400" y="155" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#666">Mobile App • Web Portal • IoT</text>
+  
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+  <path d="M 400 180 L 400 220" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Process Layer -->
+  <rect x="200" y="220" width="400" height="100" fill="#fff3e0" stroke="#e65100" stroke-width="3" rx="10"/>
+  <text x="400" y="250" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#e65100">Process APIs</text>
+  <text x="400" y="275" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#333">Business logic orchestration</text>
+  <text x="400" y="295" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#666">Order Processing • Customer Mgmt • Workflows</text>
+  
+  <!-- Arrows -->
+  <path d="M 350 320 L 200 370" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M 400 320 L 400 370" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M 450 320 L 600 370" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- System Layer -->
+  <rect x="50" y="370" width="200" height="100" fill="#e8f5e9" stroke="#1b5e20" stroke-width="3" rx="10"/>
+  <text x="150" y="400" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#1b5e20">System APIs</text>
+  <text x="150" y="425" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">Database</text>
+  <text x="150" y="445" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#666">ERP • CRM</text>
+  
+  <rect x="300" y="370" width="200" height="100" fill="#e8f5e9" stroke="#1b5e20" stroke-width="3" rx="10"/>
+  <text x="400" y="400" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#1b5e20">System APIs</text>
+  <text x="400" y="425" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">Legacy Systems</text>
+  <text x="400" y="445" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#666">Mainframe</text>
+  
+  <rect x="550" y="370" width="200" height="100" fill="#e8f5e9" stroke="#1b5e20" stroke-width="3" rx="10"/>
+  <text x="650" y="400" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#1b5e20">System APIs</text>
+  <text x="650" y="425" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">SaaS Apps</text>
+  <text x="650" y="445" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#666">Salesforce</text>
+</svg>

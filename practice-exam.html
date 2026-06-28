@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Exam - MuleSoft Learning Guide</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="content-header">
+            <nav class="breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <span class="current">Practice Exam</span>
+            </nav>
+            <h1>MuleSoft Certified Developer - Practice Exam</h1>
+        </header>
+
+        <main class="lesson-content">
+            <section>
+                <h2>Exam Information</h2>
+                <div class="note">
+                    <p><strong>MuleSoft Certified Developer - Level 1 (MCD)</strong></p>
+                    <ul>
+                        <li><strong>Questions:</strong> 60 multiple-choice</li>
+                        <li><strong>Duration:</strong> 120 minutes</li>
+                        <li><strong>Passing Score:</strong> 70% (42/60 correct)</li>
+                        <li><strong>Format:</strong> Online proctored or test center</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>Exam Topics Breakdown</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Questions</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Designing APIs</td>
+                            <td>15</td>
+                            <td>25%</td>
+                        </tr>
+                        <tr>
+                            <td>Building APIs</td>
+                            <td>15</td>
+                            <td>25%</td>
+                        </tr>
+                        <tr>
+                            <td>Deploying & Managing APIs</td>
+                            <td>9</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td>Error Handling</td>
+                            <td>6</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td>DataWeave</td>
+                            <td>12</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td>Security</td>
+                            <td>3</td>
+                            <td>5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>Sample Questions</h2>
+                
+                <div class="code-example">
+                    <h3>Question 1: DataWeave</h3>
+                    <p>Which DataWeave operator is used for string concatenation?</p>
+                    <ul>
+                        <li>A) +</li>
+                        <li>B) ++</li>
+                        <li>C) &</li>
+                        <li>D) concat</li>
+                    </ul>
+                    <details>
+                        <summary><strong>Show Answer</strong></summary>
+                        <p class="tip">Answer: <strong>B) ++</strong></p>
+                        <p>Example: <code>"Hello" ++ " World"</code> results in "Hello World"</p>
+                    </details>
+                </div>
+
+                <div class="code-example">
+                    <h3>Question 2: HTTP Listener</h3>
+                    <p>What is the default port for HTTP Listener in Anypoint Studio?</p>
+                    <ul>
+                        <li>A) 8080</li>
+                        <li>B) 8081</li>
+                        <li>C) 9090</li>
+                        <li>D) 80</li>
+                    </ul>
+                    <details>
+                        <summary><strong>Show Answer</strong></summary>
+                        <p class="tip">Answer: <strong>B) 8081</strong></p>
+                    </details>
+                </div>
+
+                <div class="code-example">
+                    <h3>Question 3: API-Led Connectivity</h3>
+                    <p>In API-led connectivity, which layer handles business process orchestration?</p>
+                    <ul>
+                        <li>A) Experience API</li>
+                        <li>B) Process API</li>
+                        <li>C) System API</li>
+                        <li>D) Integration API</li>
+                    </ul>
+                    <details>
+                        <summary><strong>Show Answer</strong></summary>
+                        <p class="tip">Answer: <strong>B) Process API</strong></p>
+                        <p>Process APIs orchestrate and compose data from multiple System APIs.</p>
+                    </details>
+                </div>
+
+                <div class="code-example">
+                    <h3>Question 4: Error Handling</h3>
+                    <p>What is the difference between On-Error-Continue and On-Error-Propagate?</p>
+                    <ul>
+                        <li>A) No difference</li>
+                        <li>B) Continue proceeds normally, Propagate re-throws error</li>
+                        <li>C) Continue is for warnings, Propagate for errors</li>
+                        <li>D) Continue logs error, Propagate ignores it</li>
+                    </ul>
+                    <details>
+                        <summary><strong>Show Answer</strong></summary>
+                        <p class="tip">Answer: <strong>B) Continue proceeds normally, Propagate re-throws error</strong></p>
+                        <p>On-Error-Continue handles the error and continues flow execution. On-Error-Propagate handles the error but propagates it to the calling flow.</p>
+                    </details>
+                </div>
+
+                <div class="code-example">
+                    <h3>Question 5: CloudHub</h3>
+                    <p>What must HTTP Listener port be configured as for CloudHub deployment?</p>
+                    <ul>
+                        <li>A) 8081</li>
+                        <li>B) 80</li>
+                        <li>C) ${http.port}</li>
+                        <li>D) Any port</li>
+                    </ul>
+                    <details>
+                        <summary><strong>Show Answer</strong></summary>
+                        <p class="tip">Answer: <strong>C) ${http.port}</strong></p>
+                        <p>CloudHub dynamically assigns a port, so you must use the property placeholder.</p>
+                    </details>
+                </div>
+            </section>
+
+            <section>
+                <h2>Full Practice Exam</h2>
+                <p>For a complete 60-question practice exam matching the actual certification format, check the resources folder:</p>
+                <ul>
+                    <li><a href="../quizzes/final-practice-exam.md" target="_blank">60-Question Practice Exam (Markdown)</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Study Tips</h2>
+                <div class="tip">
+                    <h3><i class="fas fa-lightbulb"></i> Exam Preparation Tips</h3>
+                    <ul>
+                        <li><strong>Complete all 60 days</strong> of the learning program</li>
+                        <li><strong>Build all projects</strong> - hands-on experience is crucial</li>
+                        <li><strong>Practice DataWeave</strong> extensively - it's 20% of the exam</li>
+                        <li><strong>Understand error handling</strong> patterns thoroughly</li>
+                        <li><strong>Know CloudHub deployment</strong> process and requirements</li>
+                        <li><strong>Review RAML</strong> and API design principles</li>
+                        <li><strong>Take practice exams</strong> until you consistently score 80%+</li>
+                        <li><strong>Review weak areas</strong> identified in practice tests</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>Certification Resources</h2>
+                <ul>
+                    <li><a href="https://training.mulesoft.com/certification" target="_blank">Official MuleSoft Certification</a></li>
+                    <li><a href="https://docs.mulesoft.com/" target="_blank">MuleSoft Documentation</a></li>
+                    <li><a href="https://training.mulesoft.com/practice-exams" target="_blank">Official Practice Exams</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ready to Schedule?</h2>
+                <p>Once you're consistently scoring 80%+ on practice exams:</p>
+                <ol>
+                    <li>Visit the <a href="https://training.mulesoft.com/certification" target="_blank">MuleSoft Certification Portal</a></li>
+                    <li>Create or log into your account</li>
+                    <li>Select MuleSoft Certified Developer - Level 1</li>
+                    <li>Choose exam delivery method (online proctored or test center)</li>
+                    <li>Schedule your exam date</li>
+                    <li>Pay the exam fee (~$250 USD)</li>
+                </ol>
+                <div class="tip">
+                    <p><strong>Good Luck!</strong> You've got this! 🎓</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="content-footer">
+            <p><a href="index.html">Back to Home</a> | <a href="resources.html">Resources</a></p>
+        </footer>
+    </div>
+</body>
+</html>

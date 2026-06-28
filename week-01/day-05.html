@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5: Understanding Mule Events & Messages - MuleSoft Learning Guide</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="content-header">
+            <nav class="breadcrumb">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html">Week 1</a>
+                <span class="current">Day 5</span>
+            </nav>
+            <h1>Day 5: Understanding Mule Events & Messages</h1>
+        </header>
+
+        <main class="lesson-content">
+            <h1>Day 5: Understanding Mule Events & Messages</h1>
+<h2>📚 Learning Objectives</h2>
+<ul>
+<li>Understand the complete Mule Event structure</li>
+<li>Master payload vs attributes concepts</li>
+<li>Learn about variables (flow variables)</li>
+<li>Explore message metadata</li>
+<li>Practice manipulating events</li>
+</ul>
+<p><strong>Estimated Time</strong>: 2.5 hours<br>
+<strong>Theory</strong>: 40% | <strong>Practical</strong>: 60%</p>
+
+<h2>🎯 Mule Event Structure</h2>
+
+<div class="diagram">
+    <img src="../assets/images/mule-event-structure.svg" alt="Mule Event Structure" />
+    <p class="diagram-caption">Complete Mule Event Structure</p>
+</div>
+
+<p>A Mule Event is the data structure that moves through a Mule flow. It consists of two main parts:</p>
+<ul>
+<li><strong>Message</strong>: Contains the payload (data) and attributes (metadata)</li>
+<li><strong>Variables</strong>: Optional data storage that persists through the flow</li>
+</ul>
+<h2>📦 Understanding Payload</h2>
+<h3>What is Payload?</h3>
+<p>The <strong>payload</strong> is the main body of the message - the actual data being processed.</p>
+<h3>Payload Examples:</h3>
+<h4>String Payload:</h4>
+<pre><code class='language-'>&quot;Hello, World!&quot;
+</code></pre>
+<h4>JSON Payload:</h4>
+<pre><code class='language-json'>{
+  &quot;customerId&quot;: 12345,
+  &quot;name&quot;: &quot;John Doe&quot;,
+  &quot;email&quot;: &quot;john@example.com&quot;
+}
+</code></pre>
+<h4>XML Payload:</h4>
+<pre><code class='language-xml'>&lt;customer&gt;
+  &lt;id&gt;12345&lt;/id&gt;
+  &lt;name&gt;John Doe&lt;/name&gt;
+&lt;/customer&gt;
+</code></pre>
+<h3>Accessing Payload:</h3>
+<pre><code class='language-'>DataWeave Expression: #[payload]
+Components: Logger, Set Payload, Transform Message
+</code></pre>
+
+<h3>Accessing HTTP Attributes:</h3>
+
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>DataWeave Expression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All headers</td>
+<td><code>attributes.headers</code></td>
+</tr>
+<tr>
+<td>All query params</td>
+<td><code>attributes.queryParams</code></td>
+</tr>
+<tr>
+<td>Specific query param</td>
+<td><code>attributes.queryParams.page</code></td>
+</tr>
+<tr>
+<td>URI parameter</td>
+<td><code>attributes.uriParams.id</code></td>
+</tr>
+<tr>
+<td>HTTP method</td>
+<td><code>attributes.method</code></td>
+</tr>
+<tr>
+<td>Request path</td>
+<td><code>attributes.requestPath</code></td>
+</tr>
+</tbody>
+</table>
+<h2>🛠️ Hands-On Exercise: Event Manipulation</h2>
+<h3>Create New Project: event-demo</h3>
+<h3>Exercise 1: Inspect Payload and Attributes</h3>
+<pre><code class='language-xml'>&lt;flow name=&quot;inspect-event-flow&quot;&gt;
+    &lt;http:listener 
+        config-ref=&quot;HTTP_Listener_config&quot; 
+        path=&quot;/inspect/{userId}&quot;/&gt;
+    
+    &lt;logger 
+        level=&quot;INFO&quot; 
+        message=&quot;Payload: #[payload]&quot;/&gt;
+    
+    &lt;logger 
+        level=&quot;INFO&quot; 
+        message=&quot;URI Param userId: #[attributes.uriParams.userId]&quot;/&gt;
+    
+    &lt;logger 
+        level=&quot;INFO&quot; 
+        message=&quot;Query Param (if exists): #[attributes.queryParams.filter default &#39;none&#39;]&quot;/&gt;
+    
+    &lt;logger 
+        level=&quot;INFO&quot; 
+        message=&quot;HTTP Method: #[attributes.method]&quot;/&gt;
+    
+    &lt;logger 
+        level=&quot;INFO&quot; 
+        message=&quot;All Headers: #[attributes.headers]&quot;/&gt;
+    
+    &lt;set-payload 
+        value=&quot;#[
+            {
+                userId: attributes.uriParams.userId,
+                method: attributes.method,
+                path: attributes.requestPath
+            }
+        ]&quot;/&gt;
+&lt;/flow&gt;
+</code></pre>
+<h4>Test:</h4>
+<pre><code class='language-'>POST http://localhost:8081/inspect/12345?filter=active
+Body: {&quot;action&quot;: &quot;test&quot;}
+
+Check Console for logs!
+</code></pre>
+<h3>Exercise 3: Modify Payload Without Losing Original</h3>
+<pre><code class='language-xml'>&lt;flow name=&quot;preserve-original-flow&quot;&gt;
+    &lt;http:listener 
+        config-ref=&quot;HTTP_Listener_config&quot; 
+        path=&quot;/transform&quot;/&gt;
+    
+    &lt;!-- Save original payload in variable --&gt;
+    &lt;set-variable 
+        variableName=&quot;originalPayload&quot; 
+        value=&quot;#[payload]&quot;/&gt;
+    
+    &lt;logger message=&quot;Original: #[payload]&quot;/&gt;
+    
+    &lt;!-- Transform payload --&gt;
+    &lt;set-payload value=&quot;#[upper(payload)]&quot;/&gt;
+    
+    &lt;logger message=&quot;Transformed: #[payload]&quot;/&gt;
+    
+    &lt;!-- Create response with both --&gt;
+    &lt;set-payload value=&quot;#[
+        {
+            &#39;original&#39;: vars.originalPayload,
+            &#39;transformed&#39;: payload
+        }
+    ]&quot;/&gt;
+&lt;/flow&gt;
+</code></pre>
+<h4>Test:</h4>
+<pre><code class='language-'>POST http://localhost:8081/transform
+Body: hello world
+
+Response:
+{
+  &quot;original&quot;: &quot;hello world&quot;,
+  &quot;transformed&quot;: &quot;HELLO WORLD&quot;
+}
+</code></pre>
+<h2>🧪 Practice Challenges</h2>
+<h3>Challenge 1: Request Logger</h3>
+<p>Create an endpoint that logs ALL details of a request:</p>
+<ul>
+<li>Method</li>
+<li>Path</li>
+<li>All headers</li>
+<li>All query params</li>
+<li>Body (payload)</li>
+</ul>
+<h3>Challenge 2: Shopping Cart Calculator</h3>
+<p>Create <code>POST /cart</code> that accepts:</p>
+<pre><code class='language-json'>{
+  &quot;items&quot;: [
+    {&quot;name&quot;: &quot;Item1&quot;, &quot;price&quot;: 10, &quot;qty&quot;: 2},
+    {&quot;name&quot;: &quot;Item2&quot;, &quot;price&quot;: 15, &quot;qty&quot;: 1}
+  ]
+}
+</code></pre>
+<p>Calculate and return:</p>
+<ul>
+<li>Subtotal</li>
+<li>Tax (8%)</li>
+<li>Total</li>
+<li>Number of items</li>
+</ul>
+<p>Use variables to store intermediate calculations.</p>
+<h3>Challenge 3: Multi-Step Process</h3>
+<p>Create a flow that:</p>
+<ol>
+<li>Receives user ID in path</li>
+<li>Stores user ID in variable</li>
+<li>Changes payload to simulate DB lookup</li>
+<li>Stores result in another variable</li>
+<li>Builds final response using BOTH variables</li>
+</ul>
+<h2>✅ Day 5 Achievements</h2>
+<ul>
+<li>✅ Understand Mule Event structure</li>
+<li>✅ Know difference between payload and attributes</li>
+<li>✅ Can create and use variables</li>
+<li>✅ Access HTTP metadata</li>
+<li>✅ Build complex flows using all event components</li>
+</ul>
+<hr>
+
+        </main>
+
+        <nav class="lesson-nav">
+            <a href='day-04.html' class='nav-btn prev'><i class='fas fa-arrow-left'></i> Previous</a>
+            <a href='day-06.html' class='nav-btn next'>Next <i class='fas fa-arrow-right'></i></a>
+        </nav>
+
+        <footer class="content-footer">
+            <p><a href="../index.html">Back to Home</a> | <a href="index.html">Week 1 Overview</a> | <a href="../resources.html">Resources</a></p>
+        </footer>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

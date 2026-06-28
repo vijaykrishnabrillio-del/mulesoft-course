@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2: Anypoint Studio Installation & Setup - MuleSoft Learning Guide</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="content-header">
+            <nav class="breadcrumb">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html">Week 1</a>
+                <span class="current">Day 2</span>
+            </nav>
+            <h1>Day 2: Anypoint Studio Installation & Setup</h1>
+        </header>
+
+        <main class="lesson-content">
+            <h1>Day 2: Anypoint Studio Installation & Setup</h1>
+<h2>📚 Learning Objectives</h2>
+<ul>
+<li>Install Java JDK (required for Anypoint Studio)</li>
+<li>Download and install Anypoint Studio</li>
+<li>Configure IDE preferences and workspace</li>
+<li>Understand the Anypoint Studio interface</li>
+<li>Create your first Mule project</li>
+</ul>
+<p><strong>Estimated Time</strong>: 2.5 hours  </p>
+<p><strong>Theory</strong>: 30% | <strong>Practical</strong>: 70%</p>
+<h2>☕ Step 1: Install Java JDK</h2>
+<h3>Why Java?</h3>
+<p>Anypoint Studio is built on Eclipse and requires Java Development Kit (JDK) to run.</p>
+<h3>Check Existing Installation:</h3>
+<pre><code class='language-bash'># Open terminal/command prompt and run:
+java -version
+javac -version
+</code></pre>
+<h3>Expected Output:</h3>
+<pre><code class='language-'>java version &quot;1.8.0_xxx&quot; or &quot;11.0.x&quot;
+Java(TM) SE Runtime Environment
+javac 1.8.0_xxx or 11.0.x
+</code></pre>
+<h3>If Java is NOT Installed:</h3>
+<h4>Windows:</h4>
+<ol>
+<li>Download <strong>AdoptOpenJDK 8 or 11</strong> from <a href="https://adoptopenjdk.net/">adoptopenjdk.net</a></li>
+<li>Choose:</li>
+</ul>
+<p>   - Version: OpenJDK 8 (LTS) or 11 (LTS)</p>
+<p>   - JVM: HotSpot</p>
+<ol>
+<li>Run installer (choose "Add to PATH" option)</li>
+<li>Verify installation with <code>java -version</code></li>
+</ul>
+<h4>macOS:</h4>
+<pre><code class='language-bash'># Using Homebrew
+brew install openjdk@11
+# Add to PATH
+echo &#39;export PATH=&quot;/usr/local/opt/openjdk@11/bin:$PATH&quot;&#39; &gt;&gt; ~/.zshrc
+source ~/.zshrc
+</code></pre>
+<h4>Linux (Ubuntu/Debian):</h4>
+<pre><code class='language-bash'>sudo apt update
+sudo apt install openjdk-11-jdk
+java -version
+</code></pre>
+<h3>Set JAVA_HOME Environment Variable:</h3>
+<h4>Windows:</h4>
+<pre><code class='language-'>1. Search &quot;Environment Variables&quot; in Start menu
+2. Click &quot;Environment Variables&quot; button
+3. Under &quot;System Variables&quot;, click &quot;New&quot;
+   - Variable name: JAVA_HOME
+   - Variable value: C:\Program Files\Java\jdk1.8.0_xxx
+4. Click OK
+</code></pre>
+<h4>macOS/Linux:</h4>
+<pre><code class='language-bash'># Add to ~/.bashrc or ~/.zshrc
+export JAVA_HOME=$(/usr/libexec/java_home)  # macOS
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64  # Linux
+</code></pre>
+<h2>📦 Step 3: Install Anypoint Studio</h2>
+<h3>Windows Installation:</h3>
+<ol>
+<li>Extract the downloaded <code>.zip</code> file</li>
+<li>Move the <code>AnypointStudio</code> folder to <code>C:\</code> (recommended)</li>
+<li>Navigate to <code>C:\AnypointStudio</code></li>
+<li>Run <code>AnypointStudio.exe</code></li>
+</ul>
+<h3>macOS Installation:</h3>
+<ol>
+<li>Open the downloaded <code>.dmg</code> file</li>
+<li>Drag <code>Anypoint Studio</code> to Applications</li>
+<li>Right-click → Open (first time only, to bypass Gatekeeper)</li>
+<li>Grant permissions if prompted</li>
+</ul>
+<h3>Linux Installation:</h3>
+<pre><code class='language-bash'># Extract archive
+tar -xzf AnypointStudio-*.tar.gz
+
+# Move to /opt (optional)
+sudo mv AnypointStudio /opt/
+
+# Run Studio
+cd /opt/AnypointStudio
+./AnypointStudio
+</code></pre>
+<h2>🖥️ Understanding Anypoint Studio Interface</h2>
+<h3>Main Areas:</h3>
+<pre><code class='language-'>┌─────────────────────────────────────────────────────┐
+│ Menu Bar                                            │
+├──────────────┬──────────────────────────────────────┤
+│              │                                      │
+│  Package     │         Canvas                      │
+│  Explorer    │    (Design your flows here)         │
+│              │                                      │
+│  (Project    │                                      │
+│   Files)     │                                      │
+│              │                                      │
+├──────────────┼──────────────────────────────────────┤
+│              │                                      │
+│  Mule        │      Configuration XML               │
+│  Palette     │   (View/edit XML directly)           │
+│              │                                      │
+│ (Components) │                                      │
+│              │                                      │
+├──────────────┴──────────────────────────────────────┤
+│  Console (Output, Errors, Logs)                    │
+└─────────────────────────────────────────────────────┘
+</code></pre>
+<h3>Key Panels:</h3>
+<ol>
+<li><strong>Package Explorer</strong> (Left)</li>
+</ul>
+<p>   - Shows all your projects and files</p>
+<p>   - Navigate through project structure</p>
+<ol>
+<li><strong>Mule Palette</strong> (Left)</li>
+</ul>
+<p>   - All available components and connectors</p>
+<p>   - Search functionality</p>
+<p>   - Favorites section</p>
+<ol>
+<li><strong>Canvas</strong> (Center)</li>
+</ul>
+<p>   - Visual flow design area</p>
+<p>   - Drag-and-drop components</p>
+<p>   - Switch between Message Flow and Global Elements</p>
+<ol>
+<li><strong>Configuration XML</strong> (Center, bottom tab)</li>
+</ul>
+<p>   - View and edit XML configuration</p>
+<p>   - Switch between visual and code view</p>
+<ol>
+<li><strong>Console</strong> (Bottom)</li>
+</ul>
+<p>   - Application logs</p>
+<p>   - Deployment messages</p>
+<p>   - Error output</p>
+<h2>⚙️ Step 5: Configure Studio Preferences</h2>
+<h3>Recommended Settings:</h3>
+<h4>1. Font Size (for better readability):</h4>
+<pre><code class='language-'>Window → Preferences → General → Appearance → Colors and Fonts
+→ Basic → Text Font → Edit → Size: 12-14
+</code></pre>
+<h4>2. Auto-Save:</h4>
+<pre><code class='language-'>Window → Preferences → General → Editors → Autosave
+☑ Enable autosave every 30 seconds
+</code></pre>
+<h4>3. Maven Settings:</h4>
+<pre><code class='language-'>Anypoint Studio → Preferences → Anypoint Studio → Maven
+☑ Use embedded Maven installation
+</code></pre>
+<h4>4. Runtime Manager:</h4>
+<pre><code class='language-'>Anypoint Studio → Preferences → Anypoint Studio → Authentication
+→ Sign in with Anypoint Platform credentials
+</code></pre>
+<h2>🚨 Common Installation Issues & Troubleshooting</h2>
+<h3>Issue 1: "Java version not compatible"</h3>
+<p><strong>Solution</strong>:</p>
+<ul>
+<li>Ensure JDK 8 or 11 is installed (not JRE)</li>
+<li>Set JAVA_HOME correctly</li>
+<li>Restart Studio after Java installation</li>
+</ul>
+<h3>Issue 2: Studio won't start</h3>
+<p><strong>Solution</strong>:</p>
+<pre><code class='language-'>1. Check AnypointStudio.ini file
+2. Add/verify:
+   -vm
+   C:/Program Files/Java/jdk1.8.0_xxx/bin/javaw.exe
+</code></pre>
+<h3>Issue 3: Workspace errors</h3>
+<p><strong>Solution</strong>:</p>
+<ul>
+<li>Close Studio</li>
+<li>Delete <code>.metadata</code> folder in workspace</li>
+<li>Restart Studio (will recreate workspace)</li>
+</ul>
+<h3>Issue 4: Slow performance</h3>
+<p><strong>Solution</strong>:</p>
+<ul>
+<li>Increase memory in AnypointStudio.ini:</li>
+<pre><code class='language-'>-Xms1024m
+-Xmx4096m
+</code></pre>
+</ul>
+<h2>🎯 Today's Achievements</h2>
+<ul>
+<li>✅ Complete development environment setup</li>
+<li>✅ Understanding of Studio interface</li>
+<li>✅ Created first Mule project</li>
+<li>✅ Ready to start building applications</li>
+</ul>
+<h2>🔜 Tomorrow's Preview: Day 3</h2>
+<p><strong>Topic</strong>: Mule Application Structure</p>
+<p>We'll dive deep into the anatomy of a Mule project, understanding XML configuration, flows, and how all the pieces fit together.</p>
+<hr>
+
+        </main>
+
+        <nav class="lesson-nav">
+            <a href='day-01.html' class='nav-btn prev'><i class='fas fa-arrow-left'></i> Previous</a>
+            <a href='day-03.html' class='nav-btn next'>Next <i class='fas fa-arrow-right'></i></a>
+        </nav>
+
+        <footer class="content-footer">
+            <p><a href="../index.html">Back to Home</a> | <a href="index.html">Week 1 Overview</a> | <a href="../resources.html">Resources</a></p>
+        </footer>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

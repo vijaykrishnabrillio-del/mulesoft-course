@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: Introduction to MuleSoft & Integration - MuleSoft Learning Guide</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="content-header">
+            <nav class="breadcrumb">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html">Week 1</a>
+                <span class="current">Day 1</span>
+            </nav>
+            <h1>Day 1: Introduction to MuleSoft & Integration</h1>
+        </header>
+
+        <main class="lesson-content">
+            <h1>Day 1: Introduction to MuleSoft & Integration</h1>
+
+<h2>📚 Learning Objectives</h2>
+<ul>
+<li>Understand what MuleSoft is and its role in enterprise integration</li>
+<li>Learn the fundamentals of ESB (Enterprise Service Bus)</li>
+<li>Explore the Anypoint Platform ecosystem</li>
+<li>Understand common integration patterns and use cases</li>
+<li>Set up your Anypoint Platform account</li>
+</ul>
+
+<p><strong>Estimated Time</strong>: 2 hours<br>
+<strong>Theory</strong>: 60% | <strong>Practical</strong>: 40%</p>
+
+<hr>
+
+<h2>🎯 What is MuleSoft?</h2>
+
+<h3>Definition</h3>
+<p><strong>MuleSoft</strong> is an integration platform that helps organizations connect applications, data, and devices across on-premises and cloud environments through API-led connectivity.</p>
+
+<h3>Key Components:</h3>
+<ol>
+<li><strong>Anypoint Platform</strong> - Complete integration platform</li>
+<li><strong>Anypoint Studio</strong> - Development IDE</li>
+<li><strong>Mule Runtime</strong> - Execution engine</li>
+<li><strong>CloudHub</strong> - Cloud deployment platform</li>
+<li><strong>Anypoint Exchange</strong> - Asset repository</li>
+</ol>
+
+<hr>
+
+<h2>🏗️ Enterprise Service Bus (ESB)</h2>
+
+<div class="diagram">
+    <img src="../assets/images/esb-architecture.svg" alt="ESB Architecture" />
+    <p class="diagram-caption">ESB-Based Integration Architecture</p>
+</div>
+
+<h3>What is an ESB?</h3>
+<p>An ESB is a software architecture that provides a fundamental framework for connecting different applications and services.</p>
+
+<h3>Traditional Integration Challenges:</h3>
+<pre><code class='language-text'>❌ Point-to-Point Integration Issues:
+   App A ←→ App B
+     ↕       ↕
+   App C ←→ App D
+   
+   Problems:
+   - Complex web of connections (N² complexity)
+   - Hard to maintain
+   - Tight coupling
+   - No reusability
+</code></pre>
+
+<h3>ESB Solution:</h3>
+<pre><code class='language-text'>✅ ESB-Based Integration:
+   App A ↘
+   App B → ESB → Services & APIs
+   App C ↗     ↘ Data Sources
+   App D       ↘ External Systems
+   
+   Benefits:
+   - Centralized integration
+   - Loose coupling
+   - Reusable components
+   - Easy maintenance
+</code></pre>
+
+<hr>
+
+<h2>🌐 Anypoint Platform Overview</h2>
+
+<div class="diagram">
+    <img src="../assets/images/anypoint-platform.svg" alt="Anypoint Platform Architecture" />
+    <p class="diagram-caption">Anypoint Platform Components</p>
+</div>
+
+<h3>Platform Components:</h3>
+
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Purpose</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Design Center</strong></td>
+<td>Design APIs and integrations</td>
+<td>Create RAML/OAS specs</td>
+</tr>
+<tr>
+<td><strong>Anypoint Studio</strong></td>
+<td>Development IDE</td>
+<td>Build Mule applications</td>
+</tr>
+<tr>
+<td><strong>Anypoint Exchange</strong></td>
+<td>Asset repository</td>
+<td>Share connectors, templates</td>
+</tr>
+<tr>
+<td><strong>Runtime Manager</strong></td>
+<td>Deploy & manage apps</td>
+<td>CloudHub deployments</td>
+</tr>
+<tr>
+<td><strong>API Manager</strong></td>
+<td>Apply policies, analytics</td>
+<td>Secure and monitor APIs</td>
+</tr>
+<tr>
+<td><strong>Monitoring</strong></td>
+<td>Visualize app performance</td>
+<td>Track metrics, logs</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>📝 Summary</h2>
+<p>In this first day, we've covered the fundamentals of MuleSoft and enterprise integration, understanding how ESB architecture solves complex integration challenges and exploring the comprehensive Anypoint Platform.</p>
+
+        </main>
+
+        <nav class="lesson-nav">
+            <span></span>
+            <a href='day-02.html' class='nav-btn next'>Next <i class='fas fa-arrow-right'></i></a>
+        </nav>
+
+        <footer class="content-footer">
+            <p><a href="../index.html">Back to Home</a> | <a href="index.html">Week 1 Overview</a> | <a href="../resources.html">Resources</a></p>
+        </footer>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
