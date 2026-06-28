@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: Your First Mule Application - MuleSoft Learning Guide</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="content-header">
+            <nav class="breadcrumb">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html">Week 1</a>
+                <span class="current">Day 4</span>
+            </nav>
+            <h1>Day 4: Your First Mule Application</h1>
+        </header>
+
+        <main class="lesson-content">
+            <h1>Day 4: Your First Mule Application</h1>
+<h2>📚 Learning Objectives</h2>
+<ul>
+<li>Build a complete "Hello World" REST API from scratch</li>
+<li>Understand HTTP Listener configuration</li>
+<li>Use Logger and Set Payload components</li>
+<li>Run and test your Mule application</li>
+<li>Debug using Console and Postman</li>
+</ul>
+<p><strong>Estimated Time</strong>: 3 hours  </p>
+<p><strong>Theory</strong>: 20% | <strong>Practical</strong>: 80%</p>
+<h2>🚀 Step-by-Step Build</h2>
+<h3>Step 1: Create New Project</h3>
+<ol>
+<li><strong>File → New → Mule Project</strong></li>
+<li><strong>Configuration</strong>:</li>
+</ul>
+<p>   ```</p>
+<p>   Project name: hello-world-api</p>
+<p>   Runtime: Mule Server 4.x</p>
+<p>   ```</p>
+<ol>
+<li>Click <strong>Finish</strong></li>
+</ul>
+<h3>Step 3: Build Endpoint 1 - Simple Hello World</h3>
+<h4>Drag Components to Canvas:</h4>
+<ol>
+<li>From <strong>Mule Palette → HTTP</strong>, drag <strong>Listener</strong> to canvas</li>
+<li>From <strong>Mule Palette → Core</strong>, drag <strong>Set Payload</strong> after Listener</li>
+<li>From <strong>Mule Palette → Core</strong>, drag <strong>Logger</strong> before Set Payload</li>
+</ul>
+<h4>Configure Flow:</h4>
+<p><strong>Flow Structure</strong>:</p>
+<pre><code class='language-'>[HTTP Listener] → [Logger] → [Set Payload]
+</code></pre>
+<h4>1. Configure HTTP Listener:</h4>
+<pre><code class='language-'>Display Name: Receive Hello Request
+Connector configuration: HTTP_Listener_config
+Path: /hello
+Allowed Methods: GET
+</code></pre>
+<h4>2. Configure Logger:</h4>
+<pre><code class='language-'>Display Name: Log Request
+Message: &quot;Received request at /hello endpoint&quot;
+Level: INFO
+</code></pre>
+<h4>3. Configure Set Payload:</h4>
+<pre><code class='language-'>Display Name: Set Hello Response
+Value: &quot;Hello, World!&quot;
+</code></pre>
+<h4>Complete XML for Flow 1:</h4>
+<pre><code class='language-xml'>&lt;flow name=&quot;hello-world-flow&quot;&gt;
+    &lt;http:listener 
+        doc:name=&quot;Receive Hello Request&quot; 
+        config-ref=&quot;HTTP_Listener_config&quot; 
+        path=&quot;/hello&quot;
+        allowedMethods=&quot;GET&quot;/&gt;
+    
+    &lt;logger 
+        level=&quot;INFO&quot; 
+        doc:name=&quot;Log Request&quot; 
+        message=&quot;Received request at /hello endpoint&quot;/&gt;
+    
+    &lt;set-payload 
+        value=&quot;Hello, World!&quot; 
+        doc:name=&quot;Set Hello Response&quot;/&gt;
+&lt;/flow&gt;
+</code></pre>
+<h3>Step 5: Build Endpoint 2 - Personalized Greeting</h3>
+<h4>Add New Flow:</h4>
+<p><strong>Goal</strong>: <code>GET /hello/John</code> returns <code>Hello, John!</code></p>
+<h4>1. Create New Flow:</h4>
+<ul>
+<li>Drag new <strong>HTTP Listener</strong> to canvas (creates new flow automatically)</li>
+</ul>
+<h4>2. Configure Components:</h4>
+<p><strong>HTTP Listener</strong>:</p>
+<pre><code class='language-'>Path: /hello/{name}
+Allowed Methods: GET
+</code></pre>
+<p><strong>Logger</strong>:</p>
+<pre><code class='language-'>Message: #[&quot;Greeting request for: &quot; ++ attributes.uriParams.name]
+</code></pre>
+<p><strong>Set Payload</strong>:</p>
+<pre><code class='language-'>Value: #[&quot;Hello, &quot; ++ attributes.uriParams.name ++ &quot;!&quot;]
+</code></pre>
+<h4>Complete XML for Flow 2:</h4>
+<pre><code class='language-xml'>&lt;flow name=&quot;personalized-greeting-flow&quot;&gt;
+    &lt;http:listener 
+        doc:name=&quot;Receive Name Parameter&quot; 
+        config-ref=&quot;HTTP_Listener_config&quot; 
+        path=&quot;/hello/{name}&quot;
+        allowedMethods=&quot;GET&quot;/&gt;
+    
+    &lt;logger 
+        level=&quot;INFO&quot; 
+        doc:name=&quot;Log Name&quot; 
+        message=&quot;#[&#39;Greeting request for: &#39; ++ attributes.uriParams.name]&quot;/&gt;
+    
+    &lt;set-payload 
+        value=&quot;#[&#39;Hello, &#39; ++ attributes.uriParams.name ++ &#39;!&#39;]&quot; 
+        doc:name=&quot;Set Personalized Greeting&quot;/&gt;
+&lt;/flow&gt;
+</code></pre>
+<h4>Understanding DataWeave Expressions:</h4>
+<p>The <code>#[ ]</code> syntax denotes <strong>DataWeave</strong> expressions:</p>
+<pre><code class='language-'>#[&quot;Hello, &quot; ++ attributes.uriParams.name ++ &quot;!&quot;]
+│  │         │   │                          │
+│  │         │   │                          └─ String concatenation
+│  │         │   └─ URI parameter (from path)
+│  │         └─ Concatenation operator
+│  └─ String literal
+└─ DataWeave expression delimiter
+</code></pre>
+<ul>
+<li><code>attributes.uriParams.name</code> - Accesses the {name} from URL path</li>
+<li><code>++</code> - String concatenation operator</li>
+<li><code>#[ ]</code> - Wraps DataWeave expressions</li>
+</ul>
+<h4>Test Endpoint 2:</h4>
+<pre><code class='language-'>GET http://localhost:8081/hello/Alice
+Response: Hello, Alice!
+
+GET http://localhost:8081/hello/MuleSoft
+Response: Hello, MuleSoft!
+</code></pre>
+<h2>🎨 Complete Application Visual</h2>
+<pre><code class='language-'>┌──────────────────────────────────────────────────┐
+│  hello-world-api Application                     │
+├──────────────────────────────────────────────────┤
+│                                                  │
+│  Flow 1: hello-world-flow                       │
+│  ┌────────┐  ┌────────┐  ┌──────────────┐      │
+│  │ Listen │→ │ Logger │→ │ Set Payload  │      │
+│  │ /hello │  │        │  │ &quot;Hello,      │      │
+│  └────────┘  └────────┘  │  World!&quot;     │      │
+│                           └──────────────┘      │
+│                                                  │
+│  Flow 2: personalized-greeting-flow             │
+│  ┌────────────┐  ┌────────┐  ┌──────────────┐  │
+│  │ Listen     │→ │ Logger │→ │ Set Payload  │  │
+│  │ /hello/    │  │        │  │ &quot;Hello,      │  │
+│  │ {name}     │  │        │  │  {name}!&quot;    │  │
+│  └────────────┘  └────────┘  └──────────────┘  │
+│                                                  │
+│  Flow 3: echo-service-flow                      │
+│  ┌────────┐  ┌────────┐  ┌──────────────┐      │
+│  │ Listen │→ │ Logger │→ │ Set Payload  │      │
+│  │ /echo  │  │        │  │ (echo back)  │      │
+│  │ [POST] │  │        │  │              │      │
+│  └────────┘  └────────┘  └──────────────┘      │
+└──────────────────────────────────────────────────┘
+</code></pre>
+<h2>🚨 Troubleshooting Guide</h2>
+<h3>Issue 1: Port Already in Use</h3>
+<p><strong>Error</strong>: <code>Address already in use: bind</code>  </p>
+<p><strong>Solution</strong>:</p>
+<pre><code class='language-'>Option 1: Change port in HTTP Listener config to 8082
+Option 2: Stop other application using port 8081
+</code></pre>
+<h3>Issue 2: Application Won't Start</h3>
+<p><strong>Error</strong>: Various startup errors  </p>
+<p><strong>Solution</strong>:</p>
+<pre><code class='language-'>1. Check Console for specific error
+2. Project → Clean
+3. Right-click project → Mule → Clear Application Data
+4. Restart Studio
+</code></pre>
+<h3>Issue 3: 404 Not Found</h3>
+<p><strong>Error</strong>: Endpoint returns 404  </p>
+<p><strong>Solution</strong>:</p>
+<pre><code class='language-'>1. Verify exact path in Listener configuration
+2. Check application is fully deployed (Console message)
+3. Ensure HTTP method matches (GET vs POST)
+</code></pre>
+<h3>Issue 4: Empty Response</h3>
+<p><strong>Error</strong>: No response body  </p>
+<p><strong>Solution</strong>:</p>
+<pre><code class='language-'>1. Check Set Payload configuration
+2. View Console for errors
+3. Verify payload value expression
+</code></pre>
+<h2>✅ Day 4 Achievements</h2>
+<ul>
+<li>✅ Built complete REST API with multiple endpoints</li>
+<li>✅ Configured HTTP Listener</li>
+<li>✅ Used Logger and Set Payload</li>
+<li>✅ Learned basic DataWeave syntax</li>
+<li>✅ Tested API with Postman/browser</li>
+<li>✅ Read and understood console logs</li>
+</ul>
+
+
+        </main>
+
+        <nav class="lesson-nav">
+            <a href='day-03.html' class='nav-btn prev'><i class='fas fa-arrow-left'></i> Previous</a>
+            <a href='day-05.html' class='nav-btn next'>Next <i class='fas fa-arrow-right'></i></a>
+        </nav>
+
+        <footer class="content-footer">
+            <p><a href="../index.html">Back to Home</a> | <a href="index.html">Week 1 Overview</a> | <a href="../resources.html">Resources</a></p>
+        </footer>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

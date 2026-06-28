@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6: Basic Flow Control - MuleSoft Learning Guide</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="content-header">
+            <nav class="breadcrumb">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html">Week 1</a>
+                <span class="current">Day 6</span>
+            </nav>
+            <h1>Day 6: Basic Flow Control</h1>
+        </header>
+
+        <main class="lesson-content">
+            <h1>Day 6: Basic Flow Control</h1>
+<h2>📚 Learning Objectives</h2>
+<ul>
+<li>Understand flow references and reusability</li>
+<li>Differentiate between sub-flows and private flows</li>
+<li>Create modular application architecture</li>
+<li>Use Async scope for parallel processing</li>
+<li>Implement Try scope for error isolation</li>
+</ul>
+<p><strong>Estimated Time</strong>: 2.5 hours  </p>
+<p><strong>Theory</strong>: 35% | <strong>Practical</strong>: 65%</p>
+<h2>🎯 Practical Example: Modular API</h2>
+<h3>Scenario: Customer Management API</h3>
+<pre><code class='language-xml'>&lt;!-- Main entry point --&gt;
+&lt;flow name=&quot;customer-api-main&quot;&gt;
+    &lt;http:listener 
+        config-ref=&quot;HTTP_Listener_config&quot; 
+        path=&quot;/customer&quot;/&gt;
+    
+    &lt;logger message=&quot;Request received&quot;/&gt;
+    
+    &lt;!-- Call validation flow --&gt;
+    &lt;flow-ref name=&quot;validate-request-subflow&quot;/&gt;
+    
+    &lt;!-- Call processing flow --&gt;
+    &lt;flow-ref name=&quot;process-customer-subflow&quot;/&gt;
+    
+    &lt;!-- Call response builder flow --&gt;
+    &lt;flow-ref name=&quot;build-response-subflow&quot;/&gt;
+&lt;/flow&gt;
+
+&lt;!-- Validation sub-flow --&gt;
+&lt;sub-flow name=&quot;validate-request-subflow&quot;&gt;
+    &lt;logger message=&quot;Validating request&quot;/&gt;
+    &lt;set-variable 
+        variableName=&quot;isValid&quot; 
+        value=&quot;#[payload.email != null]&quot;/&gt;
+    &lt;logger message=&quot;#[&#39;Validation result: &#39; ++ vars.isValid]&quot;/&gt;
+&lt;/sub-flow&gt;
+
+&lt;!-- Processing sub-flow --&gt;
+&lt;sub-flow name=&quot;process-customer-subflow&quot;&gt;
+    &lt;logger message=&quot;Processing customer data&quot;/&gt;
+    &lt;set-variable 
+        variableName=&quot;customerId&quot; 
+        value=&quot;#[randomInt(10000)]&quot;/&gt;
+    &lt;set-payload value=&quot;#[
+        payload ++ {&#39;customerId&#39;: vars.customerId}
+    ]&quot;/&gt;
+&lt;/sub-flow&gt;
+
+&lt;!-- Response builder sub-flow --&gt;
+&lt;sub-flow name=&quot;build-response-subflow&quot;&gt;
+    &lt;logger message=&quot;Building response&quot;/&gt;
+    &lt;set-payload value=&quot;#[
+        {
+            &#39;status&#39;: &#39;success&#39;,
+            &#39;data&#39;: payload
+        }
+    ]&quot;/&gt;
+&lt;/sub-flow&gt;
+</code></pre>
+<h3>Test:</h3>
+<pre><code class='language-json'>POST http://localhost:8081/customer
+{
+  &quot;name&quot;: &quot;Alice Johnson&quot;,
+  &quot;email&quot;: &quot;alice@example.com&quot;
+}
+
+Response:
+{
+  &quot;status&quot;: &quot;success&quot;,
+  &quot;data&quot;: {
+    &quot;name&quot;: &quot;Alice Johnson&quot;,
+    &quot;email&quot;: &quot;alice@example.com&quot;,
+    &quot;customerId&quot;: 7842
+  }
+}
+</code></pre>
+
+<h3>When to Use Which:</h3>
+
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple logic extraction</td>
+<td>Sub-flow</td>
+</tr>
+<tr>
+<td>Shared across multiple flows</td>
+<td>Sub-flow or Private Flow</td>
+</tr>
+<tr>
+<td>Database transaction</td>
+<td>Private Flow</td>
+</tr>
+<tr>
+<td>Pure transformation</td>
+<td>Sub-flow</td>
+</tr>
+</tbody>
+</table>
+<h2>⚡ Async Scope</h2>
+<h3>What is Async?</h3>
+<p><strong>Async scope</strong> executes processors asynchronously (in parallel) without blocking the main flow.</p>
+<h3>Use Cases:</h3>
+<ul>
+<li>Sending notifications (don't wait)</li>
+<li>Logging to external systems</li>
+<li>Non-critical operations</li>
+<li>Fire-and-forget patterns</li>
+</ul>
+<h3>Example: Send Email Notification Async</h3>
+<pre><code class='language-xml'>&lt;flow name=&quot;order-processing-flow&quot;&gt;
+    &lt;http:listener path=&quot;/order&quot;/&gt;
+    
+    &lt;logger message=&quot;Processing order&quot;/&gt;
+    
+    &lt;!-- Main processing (synchronous) --&gt;
+    &lt;set-payload value=&quot;#[
+        {
+            &#39;orderId&#39;: randomInt(10000),
+            &#39;status&#39;: &#39;confirmed&#39;
+        }
+    ]&quot;/&gt;
+    
+    &lt;set-variable variableName=&quot;orderId&quot; value=&quot;#[payload.orderId]&quot;/&gt;
+    
+    &lt;!-- Send notification asynchronously (non-blocking) --&gt;
+    &lt;async doc:name=&quot;Send Notification Async&quot;&gt;
+        &lt;logger message=&quot;#[&#39;Sending notification for order: &#39; ++ vars.orderId]&quot;/&gt;
+        &lt;!-- Simulate email sending --&gt;
+        &lt;flow-ref name=&quot;send-email-subflow&quot;/&gt;
+    &lt;/async&gt;
+    
+    &lt;!-- Response returns immediately without waiting for async --&gt;
+    &lt;logger message=&quot;Returning response to client&quot;/&gt;
+&lt;/flow&gt;
+
+&lt;sub-flow name=&quot;send-email-subflow&quot;&gt;
+    &lt;!-- Simulate slow email service --&gt;
+    &lt;logger message=&quot;Email sending started&quot;/&gt;
+    &lt;set-payload value=&quot;#[&#39;Email sent for order: &#39; ++ vars.orderId]&quot;/&gt;
+&lt;/sub-flow&gt;
+</code></pre>
+<h3>How it Works:</h3>
+<pre><code class='language-'>Timeline:
+0ms:  Request received
+1ms:  Order processing starts
+2ms:  Async scope triggered (runs in background)
+3ms:  Response sent to client ✓
+...
+100ms: Async completes (client already got response)
+</code></pre>
+<h2>🛠️ Hands-On Exercise: Build Modular Application</h2>
+<h3>Project: order-management-api</h3>
+<h3>Requirements:</h3>
+<ol>
+<li>Accept order via POST /order</li>
+<li>Validate order data (separate sub-flow)</li>
+<li>Calculate totals (separate sub-flow)</li>
+<li>Send confirmation email async</li>
+<li>Return order confirmation</li>
+</ul>
+<h3>Implementation:</h3>
+<pre><code class='language-xml'>&lt;flow name=&quot;order-api-main&quot;&gt;
+    &lt;http:listener path=&quot;/order&quot; allowedMethods=&quot;POST&quot;/&gt;
+    
+    &lt;logger message=&quot;Order received&quot;/&gt;
+    &lt;flow-ref name=&quot;validate-order-subflow&quot;/&gt;
+    &lt;flow-ref name=&quot;calculate-totals-subflow&quot;/&gt;
+    
+    &lt;!-- Save order ID before async --&gt;
+    &lt;set-variable variableName=&quot;orderId&quot; value=&quot;#[payload.orderId]&quot;/&gt;
+    
+    &lt;!-- Send email async (non-blocking) --&gt;
+    &lt;async&gt;
+        &lt;flow-ref name=&quot;send-confirmation-email&quot;/&gt;
+    &lt;/async&gt;
+    
+    &lt;flow-ref name=&quot;format-response-subflow&quot;/&gt;
+&lt;/flow&gt;
+
+&lt;sub-flow name=&quot;validate-order-subflow&quot;&gt;
+    &lt;logger message=&quot;Validating order&quot;/&gt;
+    &lt;!-- Add validation logic --&gt;
+    &lt;set-variable 
+        variableName=&quot;isValid&quot; 
+        value=&quot;#[payload.items != null and sizeOf(payload.items) &gt; 0]&quot;/&gt;
+&lt;/sub-flow&gt;
+
+&lt;sub-flow name=&quot;calculate-totals-subflow&quot;&gt;
+    &lt;logger message=&quot;Calculating totals&quot;/&gt;
+    &lt;set-variable 
+        variableName=&quot;total&quot; 
+        value=&quot;#[sum(payload.items map $.price)]&quot;/&gt;
+    &lt;set-payload value=&quot;#[
+        payload ++ {
+            &#39;orderId&#39;: &#39;ORD-&#39; ++ randomInt(10000),
+            &#39;total&#39;: vars.total
+        }
+    ]&quot;/&gt;
+&lt;/sub-flow&gt;
+
+&lt;sub-flow name=&quot;send-confirmation-email&quot;&gt;
+    &lt;logger message=&quot;#[&#39;Sending email for order: &#39; ++ vars.orderId]&quot;/&gt;
+    &lt;!-- Email sending logic here --&gt;
+&lt;/sub-flow&gt;
+
+&lt;sub-flow name=&quot;format-response-subflow&quot;&gt;
+    &lt;set-payload value=&quot;#[
+        {
+            &#39;success&#39;: true,
+            &#39;orderId&#39;: payload.orderId,
+            &#39;total&#39;: payload.total,
+            &#39;message&#39;: &#39;Order confirmed&#39;
+        }
+    ]&quot;/&gt;
+&lt;/sub-flow&gt;
+</code></pre>
+<h3>Test:</h3>
+<pre><code class='language-json'>POST http://localhost:8081/order
+{
+  &quot;items&quot;: [
+    {&quot;name&quot;: &quot;Product A&quot;, &quot;price&quot;: 29.99},
+    {&quot;name&quot;: &quot;Product B&quot;, &quot;price&quot;: 49.99}
+  ],
+  &quot;customerEmail&quot;: &quot;customer@example.com&quot;
+}
+</code></pre>
+<h2>📝 Knowledge Check</h2>
+<ol>
+<li>What's the main difference between sub-flow and private flow?</li>
+<li>When would you use async scope?</li>
+<li>Can errors in sub-flows be caught by the caller?</li>
+<li>What happens to the response if async scope fails?</li>
+<li>Why use flow-ref instead of duplicating code?</li>
+</ul>
+
+
+        </main>
+
+        <nav class="lesson-nav">
+            <a href='day-05.html' class='nav-btn prev'><i class='fas fa-arrow-left'></i> Previous</a>
+            <a href='day-07.html' class='nav-btn next'>Next <i class='fas fa-arrow-right'></i></a>
+        </nav>
+
+        <footer class="content-footer">
+            <p><a href="../index.html">Back to Home</a> | <a href="index.html">Week 1 Overview</a> | <a href="../resources.html">Resources</a></p>
+        </footer>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

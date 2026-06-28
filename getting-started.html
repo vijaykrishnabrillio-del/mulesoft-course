@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - MuleSoft Learning Guide</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="content-header">
+            <nav class="breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <span class="current">Getting Started</span>
+            </nav>
+            <h1>Getting Started with MuleSoft</h1>
+        </header>
+
+        <main class="lesson-content">
+            <section>
+                <h2>Prerequisites</h2>
+                <p>Before you begin, ensure you have:</p>
+                <ul>
+                    <li><strong>Computer Requirements:</strong>
+                        <ul>
+                            <li>Windows 10+, macOS 10.12+, or Linux</li>
+                            <li>Minimum 8GB RAM (16GB recommended)</li>
+                            <li>At least 10GB free disk space</li>
+                        </ul>
+                    </li>
+                    <li><strong>Knowledge Prerequisites:</strong>
+                        <ul>
+                            <li>Basic understanding of APIs and HTTP</li>
+                            <li>Familiarity with any programming language</li>
+                            <li>Understanding of JSON and XML formats</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Step 1: Create Anypoint Platform Account</h2>
+                <div class="note">
+                    <p><strong>Note:</strong> You'll need this account to access MuleSoft resources and deploy applications.</p>
+                </div>
+                <ol>
+                    <li>Go to <a href="https://anypoint.mulesoft.com/" target="_blank">Anypoint Platform</a></li>
+                    <li>Click "Sign up" or "Start free trial"</li>
+                    <li>Fill in your details (use a business email if possible)</li>
+                    <li>Verify your email address</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Step 2: Install Java JDK</h2>
+                <p>Anypoint Studio requires Java Development Kit 8 or 11.</p>
+                
+                <h3>Check if Java is installed:</h3>
+                <pre><code class="language-bash">java -version
+javac -version</code></pre>
+
+                <h3>Install Java (if needed):</h3>
+                <ul>
+                    <li><strong>Windows:</strong> Download from <a href="https://adoptopenjdk.net/" target="_blank">AdoptOpenJDK</a></li>
+                    <li><strong>Mac:</strong> <code>brew install openjdk@11</code></li>
+                    <li><strong>Linux:</strong> <code>sudo apt install openjdk-11-jdk</code></li>
+                </ul>
+
+                <div class="warning">
+                    <p><strong>Important:</strong> Make sure to set the JAVA_HOME environment variable!</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Step 3: Download Anypoint Studio</h2>
+                <ol>
+                    <li>Log into your Anypoint Platform account</li>
+                    <li>Navigate to the Anypoint Studio download page</li>
+                    <li>Download the version for your operating system</li>
+                    <li>Extract the files and run the installer</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Step 4: Install Additional Tools</h2>
+                <ul>
+                    <li><strong>Postman:</strong> For API testing - <a href="https://www.postman.com/downloads/" target="_blank">Download</a></li>
+                    <li><strong>Git:</strong> For version control - <a href="https://git-scm.com/downloads" target="_blank">Download</a></li>
+                    <li><strong>VS Code:</strong> (Optional) Text editor - <a href="https://code.visualstudio.com/" target="_blank">Download</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Step 5: Verify Your Setup</h2>
+                <p>Complete this checklist to ensure everything is installed correctly:</p>
+                <ul>
+                    <li>☐ Java JDK 8 or 11 installed</li>
+                    <li>☐ JAVA_HOME environment variable set</li>
+                    <li>☐ Anypoint Studio installed and launches successfully</li>
+                    <li>☐ Anypoint Platform account created and verified</li>
+                    <li>☐ Postman installed</li>
+                    <li>☐ Git installed (verify with <code>git --version</code>)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Next Steps</h2>
+                <div class="tip">
+                    <p><strong>You're Ready!</strong> Now you can start with Week 1, Day 1 of the course.</p>
+                </div>
+                <p style="text-align: center; margin-top: 2rem;">
+                    <a href="week-01/day-01.html" class="btn-primary">Start Week 1, Day 1</a>
+                </p>
+            </section>
+
+            <section>
+                <h2>Need Help?</h2>
+                <ul>
+                    <li>Check the <a href="resources.html">Resources</a> page for troubleshooting guides</li>
+                    <li>Visit <a href="https://docs.mulesoft.com/" target="_blank">MuleSoft Documentation</a></li>
+                    <li>Join the <a href="https://help.mulesoft.com/" target="_blank">MuleSoft Community</a></li>
+                </ul>
+            </section>
+        </main>
+
+        <footer class="content-footer">
+            <p><a href="index.html">Back to Home</a> | <a href="week-01/day-01.html">Start Learning</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7: Week 1 Review & Quiz - MuleSoft Learning Guide</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="content-header">
+            <nav class="breadcrumb">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html">Week 1</a>
+                <span class="current">Day 7</span>
+            </nav>
+            <h1>Day 7: Week 1 Review & Quiz</h1>
+        </header>
+
+        <main class="lesson-content">
+            <h1>Day 7: Week 1 Review & Quiz</h1>
+<h2>📚 Learning Objectives</h2>
+<ul>
+<li>Review all Week 1 concepts</li>
+<li>Test your knowledge with comprehensive quiz</li>
+<li>Complete hands-on challenge</li>
+<li>Identify areas for improvement</li>
+<li>Prepare for Week 2</li>
+</ul>
+<p><strong>Estimated Time</strong>: 2 hours  </p>
+<p><strong>Theory</strong>: 30% | <strong>Practical</strong>: 70%</p>
+<h2>📝 Week 1 Quiz</h2>
+<h3>Section A: Multiple Choice (20 questions)</h3>
+<p><strong>1. What does ESB stand for?</strong></p>
+<ul>
+<li>A) Enterprise System Bridge</li>
+<li>B) Enterprise Service Bus</li>
+<li>C) External Service Bridge</li>
+<li>D) Extended System Bus</li>
+</ul>
+<p><strong>2. Which component is used to trigger a Mule flow?</strong></p>
+<ul>
+<li>A) Processor</li>
+<li>B) Source</li>
+<li>C) Transformer</li>
+<li>D) Router</li>
+</ul>
+<p><strong>3. What is the default port for HTTP Listener?</strong></p>
+<ul>
+<li>A) 8080</li>
+<li>B) 8081</li>
+<li>C) 9090</li>
+<li>D) 80</li>
+</ul>
+<p><strong>4. Which DataWeave expression accesses a URI parameter named "id"?</strong></p>
+<ul>
+<li>A) <code>#[payload.id]</code></li>
+<li>B) <code>#[vars.id]</code></li>
+<li>C) <code>#[attributes.uriParams.id]</code></li>
+<li>D) <code>#[attributes.id]</code></li>
+</ul>
+<p><strong>5. What is the correct syntax for string concatenation in DataWeave?</strong></p>
+<ul>
+<li>A) <code>"Hello" + "World"</code></li>
+<li>B) <code>"Hello" ++ "World"</code></li>
+<li>C) <code>"Hello" & "World"</code></li>
+<li>D) <code>concat("Hello", "World")</code></li>
+</ul>
+<p><strong>6. Which file contains Maven dependencies?</strong></p>
+<ul>
+<li>A) mule-artifact.json</li>
+<li>B) application.properties</li>
+<li>C) pom.xml</li>
+<li>D) config.xml</li>
+</ul>
+<p><strong>7. What scope does a flow variable have?</strong></p>
+<ul>
+<li>A) Global across all applications</li>
+<li>B) Current flow and sub-flows</li>
+<li>C) Only current processor</li>
+<li>D) Current application</li>
+</ul>
+<p><strong>8. Which is true about sub-flows?</strong></p>
+<ul>
+<li>A) They have their own error handling</li>
+<li>B) They can have a source (trigger)</li>
+<li>C) They inherit error handling from caller</li>
+<li>D) They run asynchronously</li>
+</ul>
+<p><strong>9. What does the Async scope do?</strong></p>
+<ul>
+<li>A) Waits for response before continuing</li>
+<li>B) Executes processors in parallel without blocking</li>
+<li>C) Handles errors asynchronously</li>
+<li>D) Makes the entire flow async</li>
+</ul>
+<p><strong>10. What is the packaging type for Mule applications in pom.xml?</strong></p>
+<ul>
+<li>A) jar</li>
+<li>B) war</li>
+<li>C) mule-application</li>
+<li>D) mule-plugin</li>
+</ul>
+<p><strong>11. Which layer in API-led connectivity is customer-facing?</strong></p>
+<ul>
+<li>A) System API</li>
+<li>B) Process API</li>
+<li>C) Experience API</li>
+<li>D) Data API</li>
+</ul>
+<p><strong>12. What is the main body of a Mule message called?</strong></p>
+<ul>
+<li>A) Attributes</li>
+<li>B) Payload</li>
+<li>C) Variables</li>
+<li>D) Properties</li>
+</ul>
+<p><strong>13. How do you call another flow in Mule?</strong></p>
+<ul>
+<li>A) <code><call-flow name="flowName"/></code></li>
+<li>B) <code><flow-ref name="flowName"/></code></li>
+<li>C) <code><invoke name="flowName"/></code></li>
+<li>D) <code><execute name="flowName"/></code></li>
+</ul>
+<p><strong>14. Which component would you use to log messages?</strong></p>
+<ul>
+<li>A) Set Payload</li>
+<li>B) Logger</li>
+<li>C) Transform Message</li>
+<li>D) Set Variable</li>
+</ul>
+<p><strong>15. What is the purpose of HTTP Listener config?</strong></p>
+<ul>
+<li>A) Define individual endpoints</li>
+<li>B) Global configuration for host, port, protocol</li>
+<li>C) Set response headers</li>
+<li>D) Configure error handling</li>
+</ul>
+<p><strong>16. Private flows differ from sub-flows in that they:</strong></p>
+<ul>
+<li>A) Cannot be reused</li>
+<li>B) Have their own error handling</li>
+<li>C) Must have a source</li>
+<li>D) Run in separate threads</li>
+</ul>
+<p><strong>17. Which expression gets the HTTP method of a request?</strong></p>
+<ul>
+<li>A) <code>#[payload.method]</code></li>
+<li>B) <code>#[attributes.method]</code></li>
+<li>C) <code>#[vars.method]</code></li>
+<li>D) <code>#[message.method]</code></li>
+</ul>
+<p><strong>18. What does the Try scope do?</strong></p>
+<ul>
+<li>A) Attempts to fix errors automatically</li>
+<li>B) Creates an error boundary/isolation</li>
+<li>C) Retries failed operations</li>
+<li>D) Validates input data</li>
+</ul>
+<p><strong>19. In API-led connectivity, which layer connects directly to systems?</strong></p>
+<ul>
+<li>A) Experience API</li>
+<li>B) Process API</li>
+<li>C) System API</li>
+<li>D) Integration API</li>
+</ul>
+<p><strong>20. What happens when an async scope fails?</strong></p>
+<ul>
+<li>A) Main flow stops</li>
+<li>B) Error propagates to caller</li>
+<li>C) Main flow is unaffected</li>
+<li>D) Application crashes</li>
+</ul>
+<h3>Section C: Code Understanding (10 questions)</h3>
+<p><strong>31. What does this DataWeave expression return?</strong></p>
+<pre><code class='language-'>#[payload.customer.name default &quot;Unknown&quot;]
+</code></pre>
+<ul>
+<li>A) The customer name or "Unknown" if null</li>
+<li>B) Always "Unknown"</li>
+<li>C) An error if customer is missing</li>
+<li>D) The entire payload</li>
+</ul>
+<p><strong>32. What is the value of vars.result after this sequence?</strong></p>
+<pre><code class='language-xml'>&lt;set-variable variableName=&quot;num1&quot; value=&quot;10&quot;/&gt;
+&lt;set-variable variableName=&quot;num2&quot; value=&quot;5&quot;/&gt;
+&lt;set-variable variableName=&quot;result&quot; value=&quot;#[vars.num1 + vars.num2]&quot;/&gt;
+</code></pre>
+<ul>
+<li>A) "105"</li>
+<li>B) 15</li>
+<li>C) "10 + 5"</li>
+<li>D) Error</li>
+</ul>
+<p><strong>33. This flow will respond with:</strong></p>
+<pre><code class='language-xml'>&lt;flow name=&quot;test&quot;&gt;
+    &lt;http:listener path=&quot;/test&quot;/&gt;
+    &lt;set-payload value=&quot;Hello&quot;/&gt;
+    &lt;logger message=&quot;#[payload]&quot;/&gt;
+    &lt;set-payload value=&quot;World&quot;/&gt;
+&lt;/flow&gt;
+</code></pre>
+<ul>
+<li>A) "Hello"</li>
+<li>B) "World"</li>
+<li>C) "HelloWorld"</li>
+<li>D) Empty</li>
+</ul>
+<p><strong>34. How many loggers will execute?</strong></p>
+<pre><code class='language-xml'>&lt;flow name=&quot;main&quot;&gt;
+    &lt;http:listener path=&quot;/test&quot;/&gt;
+    &lt;logger message=&quot;1&quot;/&gt;
+    &lt;async&gt;
+        &lt;logger message=&quot;2&quot;/&gt;
+    &lt;/async&gt;
+    &lt;logger message=&quot;3&quot;/&gt;
+&lt;/flow&gt;
+</code></pre>
+<ul>
+<li>A) 2 (1 and 3)</li>
+<li>B) 3 (all of them)</li>
+<li>C) 1 (only first)</li>
+<li>D) Depends on timing</li>
+</ul>
+<p><strong>35. What gets logged?</strong></p>
+<pre><code class='language-xml'>&lt;flow name=&quot;test&quot;&gt;
+    &lt;http:listener path=&quot;/hello/{name}&quot;/&gt;
+    &lt;set-variable variableName=&quot;greeting&quot; value=&quot;Hello&quot;/&gt;
+    &lt;logger message=&quot;#[vars.greeting ++ &#39; &#39; ++ attributes.uriParams.name]&quot;/&gt;
+&lt;/flow&gt;
+</code></pre>
+<p>For request: GET /hello/Alice</p>
+<ul>
+<li>A) "Hello Alice"</li>
+<li>B) "greeting Alice"</li>
+<li>C) "Hello {name}"</li>
+<li>D) Error</li>
+</ul>
+<h2>✅ Answer Key</h2>
+<h3>Section A Answers:</h3>
+<ol>
+<li>B  2. B  3. B  4. C  5. B  </li>
+<li>C  7. B  8. C  9. B  10. C  </li>
+<li>C  12. B  13. B  14. B  15. B  </li>
+<li>B  17. B  18. B  19. C  20. C</li>
+</ul>
+<h3>Section B Answers:</h3>
+<ol>
+<li>False  22. False  23. True  24. False (needs JDK)  25. True  </li>
+<li>False  27. True  28. True  29. True  30. False</li>
+</ul>
+<h3>Section C Answers:</h3>
+<ol>
+<li>A  32. B  33. B  34. B  35. A</li>
+</ul>
+<h2>🎯 Areas to Review</h2>
+<p>Based on your quiz results, focus on:</p>
+<p><strong>If you missed questions 1-11</strong>: Review Day 1-3 (Fundamentals)  </p>
+<p><strong>If you missed questions 12-20</strong>: Review Day 4-5 (Events & Messages)  </p>
+<p><strong>If you missed questions 21-30</strong>: Review Day 6 (Flow Control)  </p>
+<p><strong>If you missed questions 31-35</strong>: Practice more DataWeave expressions</p>
+<h2>🔜 Week 2 Preview</h2>
+<h3>Coming Up:</h3>
+<ul>
+<li><strong>Day 8</strong>: Introduction to DataWeave</li>
+<li><strong>Day 9</strong>: DataWeave Functions & Operators</li>
+<li><strong>Day 10</strong>: DataWeave Transformations</li>
+<li><strong>Day 11</strong>: Working with JSON</li>
+<li><strong>Day 12</strong>: Working with XML</li>
+<li><strong>Day 13</strong>: Advanced DataWeave</li>
+<li><strong>Day 14</strong>: Week 2 Review & Mini-Project</li>
+</ul>
+<p><strong>Get Ready</strong>: Week 2 is all about mastering DataWeave - MuleSoft's powerful transformation language!</p>
+<h2>✅ Week 1 Complete!</h2>
+<p>Congratulations on completing Week 1! 🎉</p>
+<p>You've built a solid foundation in MuleSoft development. Take a break, review your notes, and get ready for an exciting Week 2 focusing on data transformation.</p>
+<hr>
+
+        </main>
+
+        <nav class="lesson-nav">
+            <a href='day-06.html' class='nav-btn prev'><i class='fas fa-arrow-left'></i> Previous</a>
+            <a href='../week-02/index.html' class='nav-btn next'>Week 2 <i class='fas fa-arrow-right'></i></a>
+        </nav>
+
+        <footer class="content-footer">
+            <p><a href="../index.html">Back to Home</a> | <a href="index.html">Week 1 Overview</a> | <a href="../resources.html">Resources</a></p>
+        </footer>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

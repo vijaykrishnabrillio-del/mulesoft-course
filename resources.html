@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - MuleSoft Learning Guide</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="content-header">
+            <nav class="breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <span class="current">Resources</span>
+            </nav>
+            <h1>Learning Resources</h1>
+        </header>
+
+        <main class="lesson-content">
+            <section>
+                <h2><i class="fas fa-book"></i> Official Documentation</h2>
+                <ul>
+                    <li><a href="https://docs.mulesoft.com/" target="_blank">MuleSoft Documentation</a> - Complete official documentation</li>
+                    <li><a href="https://docs.mulesoft.com/dataweave/" target="_blank">DataWeave Reference</a> - DataWeave language guide</li>
+                    <li><a href="https://docs.mulesoft.com/studio/" target="_blank">Anypoint Studio Guide</a> - IDE documentation</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-video"></i> Video Tutorials</h2>
+                <ul>
+                    <li><a href="https://www.youtube.com/mulesoft" target="_blank">MuleSoft YouTube Channel</a> - Official video tutorials</li>
+                    <li><a href="https://training.mulesoft.com/" target="_blank">MuleSoft Training</a> - Structured training courses</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-tools"></i> Development Tools</h2>
+                <ul>
+                    <li><a href="https://dataweave.mulesoft.com/learn/playground" target="_blank">DataWeave Playground</a> - Test DataWeave online</li>
+                    <li><a href="https://www.postman.com/" target="_blank">Postman</a> - API testing tool</li>
+                    <li><a href="https://anypoint.mulesoft.com/exchange/" target="_blank">Anypoint Exchange</a> - Connectors and templates</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-users"></i> Community</h2>
+                <ul>
+                    <li><a href="https://help.mulesoft.com/" target="_blank">MuleSoft Help Center</a> - Community forums</li>
+                    <li><a href="https://stackoverflow.com/questions/tagged/mule" target="_blank">Stack Overflow</a> - Q&A with #mule tag</li>
+                    <li><a href="https://www.linkedin.com/groups/56618/" target="_blank">LinkedIn MuleSoft Group</a> - Professional networking</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-code"></i> Quick Reference</h2>
+                <div class="code-example">
+                    <h3>Essential DataWeave Functions</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Function</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>map</code></td>
+                                <td>Transform each element</td>
+                                <td><code>[1,2,3] map $ * 2</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>filter</code></td>
+                                <td>Select elements</td>
+                                <td><code>[1,2,3] filter $ > 1</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>reduce</code></td>
+                                <td>Aggregate values</td>
+                                <td><code>[1,2,3] reduce ($ + $$)</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>upper</code></td>
+                                <td>Uppercase string</td>
+                                <td><code>upper("hello")</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>sizeOf</code></td>
+                                <td>Get array/string length</td>
+                                <td><code>sizeOf([1,2,3])</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="code-example">
+                    <h3>HTTP Status Codes</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Meaning</th>
+                                <th>Use When</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>200</td>
+                                <td>OK</td>
+                                <td>Successful GET, PUT, DELETE</td>
+                            </tr>
+                            <tr>
+                                <td>201</td>
+                                <td>Created</td>
+                                <td>Successful POST</td>
+                            </tr>
+                            <tr>
+                                <td>400</td>
+                                <td>Bad Request</td>
+                                <td>Validation error</td>
+                            </tr>
+                            <tr>
+                                <td>401</td>
+                                <td>Unauthorized</td>
+                                <td>Authentication required</td>
+                            </tr>
+                            <tr>
+                                <td>404</td>
+                                <td>Not Found</td>
+                                <td>Resource doesn't exist</td>
+                            </tr>
+                            <tr>
+                                <td>500</td>
+                                <td>Server Error</td>
+                                <td>Unexpected error</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-wrench"></i> Troubleshooting</h2>
+                <h3>Common Issues</h3>
+                
+                <h4>1. "Port already in use"</h4>
+                <p><strong>Solution:</strong> Change the port in HTTP Listener config or stop the process using that port.</p>
+                <pre><code class="language-bash"># Windows
+netstat -ano | findstr :8081
+taskkill /PID [process_id] /F
+
+# Mac/Linux
+lsof -ti:8081 | xargs kill -9</code></pre>
+
+                <h4>2. "Java version not compatible"</h4>
+                <p><strong>Solution:</strong> Ensure JDK 8 or 11 is installed and JAVA_HOME is set correctly.</p>
+                <pre><code class="language-bash">java -version
+echo %JAVA_HOME%  # Windows
+echo $JAVA_HOME   # Mac/Linux</code></pre>
+
+                <h4>3. "Cannot coerce" DataWeave error</h4>
+                <p><strong>Solution:</strong> Use type coercion explicitly.</p>
+                <pre><code class="language-dataweave">// Wrong
+payload.age + 5
+
+// Correct
+(payload.age as Number) + 5</code></pre>
+            </section>
+
+            <section>
+                <h2><i class="fas fa-certificate"></i> Certification</h2>
+                <ul>
+                    <li><a href="https://training.mulesoft.com/certification" target="_blank">MuleSoft Certification</a> - Official certification info</li>
+                    <li><a href="practice-exam.html">Practice Exam</a> - Test your knowledge</li>
+                    <li><strong>MCD - Level 1:</strong> 60 questions, 120 minutes, 70% passing score</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer class="content-footer">
+            <p><a href="index.html">Back to Home</a> | <a href="getting-started.html">Getting Started</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#003865">Anypoint Platform Architecture</text>
+  
+  <!-- Design Layer -->
+  <rect x="50" y="80" width="700" height="100" fill="#e3f2fd" stroke="#2196f3" stroke-width="2" rx="5"/>
+  <text x="400" y="110" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#1976d2">Design &amp; Development</text>
+  <text x="150" y="140" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Design Center</text>
+  <text x="400" y="140" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Anypoint Studio</text>
+  <text x="650" y="140" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Exchange</text>
+  <rect x="100" y="150" width="100" height="20" fill="#2196f3" rx="3"/>
+  <rect x="350" y="150" width="100" height="20" fill="#2196f3" rx="3"/>
+  <rect x="600" y="150" width="100" height="20" fill="#2196f3" rx="3"/>
+  
+  <!-- Management Layer -->
+  <rect x="50" y="210" width="700" height="100" fill="#fff3e0" stroke="#ff9800" stroke-width="2" rx="5"/>
+  <text x="400" y="240" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#f57c00">Management &amp; Security</text>
+  <text x="200" y="270" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">API Manager</text>
+  <text x="400" y="270" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Access Management</text>
+  <text x="600" y="270" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Runtime Manager</text>
+  <rect x="150" y="280" width="100" height="20" fill="#ff9800" rx="3"/>
+  <rect x="350" y="280" width="100" height="20" fill="#ff9800" rx="3"/>
+  <rect x="550" y="280" width="100" height="20" fill="#ff9800" rx="3"/>
+  
+  <!-- Runtime Layer -->
+  <rect x="50" y="340" width="700" height="100" fill="#f3e5f5" stroke="#9c27b0" stroke-width="2" rx="5"/>
+  <text x="400" y="370" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#7b1fa2">Runtime &amp; Deployment</text>
+  <text x="200" y="400" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">CloudHub</text>
+  <text x="400" y="400" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Runtime Fabric</text>
+  <text x="600" y="400" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Hybrid/On-Prem</text>
+  <rect x="150" y="410" width="100" height="20" fill="#9c27b0" rx="3"/>
+  <rect x="350" y="410" width="100" height="20" fill="#9c27b0" rx="3"/>
+  <rect x="550" y="410" width="100" height="20" fill="#9c27b0" rx="3"/>
+  
+  <!-- Monitoring Layer -->
+  <rect x="50" y="470" width="700" height="100" fill="#e8f5e9" stroke="#4caf50" stroke-width="2" rx="5"/>
+  <text x="400" y="500" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#388e3c">Monitoring &amp; Analytics</text>
+  <text x="250" y="530" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Anypoint Monitoring</text>
+  <text x="550" y="530" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Visualizer</text>
+  <rect x="200" y="540" width="100" height="20" fill="#4caf50" rx="3"/>
+  <rect x="500" y="540" width="100" height="20" fill="#4caf50" rx="3"/>
+</svg>
